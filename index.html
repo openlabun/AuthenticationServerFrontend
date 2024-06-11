@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication App</title>
+</head>
+<body>
+    <h1>Authentication App</h1>
+
+    <h2>Create Contract</h2>
+    <form id="create-contract-form">
+        <label for="contract-app-name">App Name:</label>
+        <input type="text" id="contract-app-name" name="app_name" required>
+        <br>
+        <button type="submit">Create Contract</button>
+    </form>
+    <div id="create-contract-result"></div>
+
+    <h2>Register</h2>
+    <form id="register-form">
+        <label for="reg-contract-key">Contract Key:</label>
+        <input type="text" id="reg-contract-key" name="contract_key" required>
+        <br>
+        <label for="reg-username">Username:</label>
+        <input type="text" id="reg-username" name="username" required>
+        <br>
+        <label for="reg-firstname">First Name:</label>
+        <input type="text" id="reg-firstname" name="first_name" required>
+        <br>
+        <label for="reg-lastname">Last Name:</label>
+        <input type="text" id="reg-lastname" name="last_name" required>
+        <br>
+        <label for="reg-password">Password:</label>
+        <input type="password" id="reg-password" name="password" required>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+    <div id="register-result"></div>
+
+    <h2>Login</h2>
+    <form id="login-form">
+        <label for="login-app-name">App Name:</label>
+        <input type="text" id="login-app-name" name="app_name" required>
+        <br>
+        <label for="login-username">Username:</label>
+        <input type="text" id="login-username" name="username" required>
+        <br>
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    <div id="login-result"></div>
+
+    <h2>User Info</h2>
+    <form id="get-users-form">
+        <label for="users-contract-key">Contract Key:</label>
+        <input type="text" id="users-contract-key" name="contract_key" required>
+        <br>
+        <button type="submit">Get All Users</button>
+    </form>
+    <div id="users-list"></div>
+
+    <h2>Delete Contract</h2>
+    <form id="delete-contract-form">
+        <label for="delete-contract-key">Contract Key:</label>
+        <input type="text" id="delete-contract-key" name="contract_key" required>
+        <br>
+        <button type="submit">Delete Contract</button>
+    </form>
+    <div id="delete-contract-result"></div>
+
+    <script>
+        const apiBaseUrl = "https://authenticationapp--3d8zu0d.mangocoast-ed120e36.eastus.azurecontainerapps.io";
+
+        document.getElementById('create-contract-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const app_name = document.getElementById('contract-app-name').value;
+
+            const response = await fetch(`${apiBaseUrl}/create-contract?app_name=${app_name}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+            document.getElementById('create-contract-result').innerText = JSON.stringify(result);
+        });
+
+        document.getElementById('register-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const contract_key = document.getElementById('reg-contract-key').value;
+            const username = document.getElementById('reg-username').value;
+            const first_name = document.getElementById('reg-firstname').value;
+            const last_name = document.getElementById('reg-lastname').value;
+            const password = document.getElementById('reg-password').value;
+
+            const response = await fetch(`${apiBaseUrl}/register?contract_key=${contract_key}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, first_name, last_name, password })
+            });
+
+            const result = await response.json();
+            document.getElementById('register-result').innerText = JSON.stringify(result);
+        });
+
+        document.getElementById('login-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const app_name = document.getElementById('login-app-name').value;
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const response = await fetch(`${apiBaseUrl}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password, app_name })
+            });
+
+            const result = await response.json();
+            document.getElementById('login-result').innerText = JSON.stringify(result);
+        });
+
+        document.getElementById('get-users-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const contract_key = document.getElementById('users-contract-key').value;
+
+            const response = await fetch(`${apiBaseUrl}/users?contract_key=${contract_key}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const users = await response.json();
+            document.getElementById('users-list').innerText = JSON.stringify(users);
+        });
+
+        document.getElementById('delete-contract-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const contract_key = document.getElementById('delete-contract-key').value;
+
+            const response = await fetch(`${apiBaseUrl}/delete-contract?contract_key=${contract_key}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+            document.getElementById('delete-contract-result').innerText = JSON.stringify(result);
+        });
+    </script>
+</body>
+</html>
