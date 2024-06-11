@@ -3,73 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication App</title>
+    <title>Authentication App Frontend</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Authentication App</h1>
+    <div class="container">
+        <h1>Authentication App Frontend</h1>
 
-    <h2>Create Contract</h2>
-    <form id="create-contract-form">
-        <label for="contract-app-name">App Name:</label>
-        <input type="text" id="contract-app-name" name="app_name" required>
-        <br>
-        <button type="submit">Create Contract</button>
-    </form>
-    <div id="create-contract-result"></div>
+        <div class="form-section">
+            <h2>Create Contract</h2>
+            <form id="create-contract-form">
+                <div class="form-group">
+                    <input type="text" id="contract-app-name" name="app_name" required>
+                    <label for="contract-app-name">App Name</label>
+                </div>
+                <button type="submit">Create Contract</button>
+            </form>
+            <div id="create-contract-result" class="result"></div>
+        </div>
 
-    <h2>Register</h2>
-    <form id="register-form">
-        <label for="reg-contract-key">Contract Key:</label>
-        <input type="text" id="reg-contract-key" name="contract_key" required>
-        <br>
-        <label for="reg-username">Username:</label>
-        <input type="text" id="reg-username" name="username" required>
-        <br>
-        <label for="reg-firstname">First Name:</label>
-        <input type="text" id="reg-firstname" name="first_name" required>
-        <br>
-        <label for="reg-lastname">Last Name:</label>
-        <input type="text" id="reg-lastname" name="last_name" required>
-        <br>
-        <label for="reg-password">Password:</label>
-        <input type="password" id="reg-password" name="password" required>
-        <br>
-        <button type="submit">Register</button>
-    </form>
-    <div id="register-result"></div>
+        <div class="form-section">
+            <h2>Register</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <input type="text" id="reg-contract-key" name="contract_key" required>
+                    <label for="reg-contract-key">Contract Key</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="reg-username" name="username" required>
+                    <label for="reg-username">Username</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="reg-firstname" name="first_name" required>
+                    <label for="reg-firstname">First Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="reg-lastname" name="last_name" required>
+                    <label for="reg-lastname">Last Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="reg-password" name="password" required>
+                    <label for="reg-password">Password</label>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div id="register-result" class="result"></div>
+        </div>
 
-    <h2>Login</h2>
-    <form id="login-form">
-        <label for="login-app-name">App Name:</label>
-        <input type="text" id="login-app-name" name="app_name" required>
-        <br>
-        <label for="login-username">Username:</label>
-        <input type="text" id="login-username" name="username" required>
-        <br>
-        <label for="login-password">Password:</label>
-        <input type="password" id="login-password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
-    <div id="login-result"></div>
+        <div class="form-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" id="login-app-name" name="app_name" required>
+                    <label for="login-app-name">App Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="login-username" name="username" required>
+                    <label for="login-username">Username</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="login-password" name="password" required>
+                    <label for="login-password">Password</label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div id="login-result" class="result"></div>
+        </div>
 
-    <h2>User Info</h2>
-    <form id="get-users-form">
-        <label for="users-contract-key">Contract Key:</label>
-        <input type="text" id="users-contract-key" name="contract_key" required>
-        <br>
-        <button type="submit">Get All Users</button>
-    </form>
-    <div id="users-list"></div>
+        <div class="form-section">
+            <h2>User Info</h2>
+            <form id="get-users-form">
+                <div class="form-group">
+                    <input type="text" id="users-contract-key" name="contract_key" required>
+                    <label for="users-contract-key">Contract Key</label>
+                </div>
+                <button type="submit">Get All Users</button>
+            </form>
+            <div id="users-list" class="result"></div>
+        </div>
 
-    <h2>Delete Contract</h2>
-    <form id="delete-contract-form">
-        <label for="delete-contract-key">Contract Key:</label>
-        <input type="text" id="delete-contract-key" name="contract_key" required>
-        <br>
-        <button type="submit">Delete Contract</button>
-    </form>
-    <div id="delete-contract-result"></div>
+        <div class="form-section">
+            <h2>Delete Contract</h2>
+            <form id="delete-contract-form">
+                <div class="form-group">
+                    <input type="text" id="delete-contract-key" name="contract_key" required>
+                    <label for="delete-contract-key">Contract Key</label>
+                </div>
+                <button type="submit">Delete Contract</button>
+            </form>
+            <div id="delete-contract-result" class="result"></div>
+        </div>
+    </div>
 
     <script>
         const apiBaseUrl = "https://authenticationapp--3d8zu0d.mangocoast-ed120e36.eastus.azurecontainerapps.io";
