@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-section">
-            <h2>User Info</h2>
+            <h2>Get All Users</h2>
             <form id="get-users-form">
                 <div class="form-group">
                     <input type="text" id="users-contract-key" name="contract_key" required>
@@ -81,6 +81,19 @@
             </form>
             <div id="users-list" class="result"></div>
         </div>
+
+        <div class="form-section">
+            <h2>Delete all users</h2>
+            <form id="delete-users-contract-form">
+                <div class="form-group">
+                    <input type="text" id="delete-users-contract-key" name="contract_key" required>
+                    <label for="delete-users-contract-key">Contract Key</label>
+                </div>
+                <button type="submit">Delete all users</button>
+            </form>
+            <div id="delete-users-contract-result" class="result"></div>
+        </div>
+
 
         <div class="form-section">
             <h2>Delete Contract</h2>
@@ -95,92 +108,6 @@
         </div>
     </div>
 
-    <script>
-        const apiBaseUrl = "https://authenticationapp--inez1aj.mangocoast-ed120e36.eastus.azurecontainerapps.io/";
-        //const apiBaseUrl = "https://authenticationapp--3d8zu0d.mangocoast-ed120e36.eastus.azurecontainerapps.io";
-
-        document.getElementById('create-contract-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const app_name = document.getElementById('contract-app-name').value;
-
-            const response = await fetch(`${apiBaseUrl}/create-contract?app_name=${app_name}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            const result = await response.json();
-            document.getElementById('create-contract-result').innerText = JSON.stringify(result);
-        });
-
-        document.getElementById('register-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const contract_key = document.getElementById('reg-contract-key').value;
-            const username = document.getElementById('reg-username').value;
-            const first_name = document.getElementById('reg-firstname').value;
-            const last_name = document.getElementById('reg-lastname').value;
-            const password = document.getElementById('reg-password').value;
-
-            const response = await fetch(`${apiBaseUrl}/register?contract_key=${contract_key}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, first_name, last_name, password })
-            });
-
-            const result = await response.json();
-            document.getElementById('register-result').innerText = JSON.stringify(result);
-        });
-
-        document.getElementById('login-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const app_name = document.getElementById('login-app-name').value;
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
-
-            const response = await fetch(`${apiBaseUrl}/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password, app_name })
-            });
-
-            const result = await response.json();
-            document.getElementById('login-result').innerText = JSON.stringify(result);
-        });
-
-        document.getElementById('get-users-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const contract_key = document.getElementById('users-contract-key').value;
-
-            const response = await fetch(`${apiBaseUrl}/users?contract_key=${contract_key}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            const users = await response.json();
-            document.getElementById('users-list').innerText = JSON.stringify(users);
-        });
-
-        document.getElementById('delete-contract-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const contract_key = document.getElementById('delete-contract-key').value;
-
-            const response = await fetch(`${apiBaseUrl}/delete-contract?contract_key=${contract_key}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            const result = await response.json();
-            document.getElementById('delete-contract-result').innerText = JSON.stringify(result);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
