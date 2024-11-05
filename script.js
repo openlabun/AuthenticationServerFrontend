@@ -98,7 +98,7 @@ document.getElementById('get-users-form').addEventListener('submit', async (even
 
         const users = await response.json();
         if (!response.ok) {
-            throw new Error(users.message || 'Error fetching users');
+            throw new Error(result.detail || 'Error fetching users');
         }
 
         document.getElementById('users-list').innerText = JSON.stringify(users);
