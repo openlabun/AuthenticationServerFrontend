@@ -1,4 +1,4 @@
-const apiBaseUrl = 'https://authenticationapp.mangocoast-ed120e36.eastus.azurecontainerapps.io';
+const apiBaseUrl = 'https://proyectosingenieria.uninorte.edu.co/authserver';
 
 
 document.getElementById('create-contract-form').addEventListener('submit', async (event) => {
