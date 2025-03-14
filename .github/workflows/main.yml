@@ -28,5 +28,5 @@ jobs:
           git status
           docker stop authui-app
           docker rm authui-app
-          docker build -t authui . || { echo "Docker build failed"; exit 1; }
-          docker run -d -it -p 5025:80 --restart unless-stopped --name authui-app authui || { echo "Docker run failed"; exit 1; }
+          docker build -t authui-image . || { echo "Docker build failed"; exit 1; }
+          docker run -d -it -p 5025:80 --restart unless-stopped --name authui authui-image || { echo "Docker run failed"; exit 1; }
