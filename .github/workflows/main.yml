@@ -26,7 +26,7 @@ jobs:
           cd /home/proyecto/AuthenticationServerFrontend/
           git pull origin main
           git status
-          docker stop authui-app
-          docker rm authui-app
+          docker stop authui
+          docker rm authui
           docker build -t authui-image . || { echo "Docker build failed"; exit 1; }
           docker run -d -it -p 5025:80 --restart unless-stopped --name authui authui-image || { echo "Docker run failed"; exit 1; }
