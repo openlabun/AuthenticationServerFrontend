@@ -1,4 +1,4 @@
-const apiBaseUrl = 'https://proyectosingenieria.uninorte.edu.co/authserver';
+const apiBaseUrl = 'https://authuserver.openlab.uninorte.edu.co';
 
 
 document.getElementById('create-contract-form').addEventListener('submit', async (event) => {
